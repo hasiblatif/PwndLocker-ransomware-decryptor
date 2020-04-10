@@ -3,7 +3,7 @@ import binascii
 import optparse
 import settings 
 
-def get_encrypyed_size(data):
+def get_encrypted_size(data):
 	try:
 		size = change_endianness(binascii.hexlify(data[-148: -146]))
 		return int(size, 16)
@@ -11,7 +11,6 @@ def get_encrypyed_size(data):
 		None
 
 def get_key(data, ext):
-	
 	try:
 		if ext == "pwnd":
 			return settings.key
@@ -60,7 +59,7 @@ def verify_and_decrypt(encrypted_file_path, options):
 
 	if verify_encryption(encrypted_file_data):
 		print "[+] Encrpted by PwndLocker ransomware, trying decryption ..."
-		encrypted_size = get_encrypyed_size(encrypted_file_data)
+		encrypted_size = get_encrypted_size(encrypted_file_data)
 		encrypted_file_key = get_key(encrypted_file_data, ext)
 
 		#key is appended to table data 

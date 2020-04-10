@@ -5,6 +5,7 @@ This is a decryptor for PwndLocker ransomware v1.0 appeared in Nov 2019. This ra
 
 Please see settings.py to change some variables for successful decryption. Explanation is given in the file.
 
+Note: Recovered/decryted files will have original files extension.
 
 ## Usage
 
