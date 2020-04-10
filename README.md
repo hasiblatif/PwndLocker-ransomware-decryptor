@@ -9,6 +9,7 @@ Note: Recovered/decrypted files will have original files extension.
 
 ## Usage
 
+```python
 Usage: python decrypt.py [options]
 
 Options:
@@ -21,3 +22,4 @@ Options:
                     recommended until single file decryption is successfully
                     tested
 
+```
