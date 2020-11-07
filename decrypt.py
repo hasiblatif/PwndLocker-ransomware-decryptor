@@ -2,6 +2,7 @@ import sys, os
 import binascii
 import optparse
 import settings 
+import traceback
 
 def get_encrypted_size(data):
 	try:
@@ -71,6 +72,8 @@ def verify_and_decrypt(encrypted_file_path, options):
 		initial = counter
 		while counter < encrypted_size:
 			# 8 bytes are read in two dwords and are decrypted 
+			if counter + 8 > encrypted_size:
+				break
 			first_four_bytes = change_endianness(binascii.hexlify(encrypted_file_data[counter: counter+4]))
 			second_four_bytes = change_endianness(binascii.hexlify(encrypted_file_data[counter+4: counter+8]))
 			edx, eax = decrypt(key, second_four_bytes,first_four_bytes)
@@ -81,6 +84,7 @@ def verify_and_decrypt(encrypted_file_path, options):
 		delta=  binascii.hexlify(encrypted_file_data[encrypted_size - delta: encrypted_size])
 		if initial != 0:
 			Decrypted_data = Decrypted_data[:-16]
+		print counter, encrypted_size
 		Decrypted_data = encrypted_file_data[:initial] + binascii.unhexlify(Decrypted_data + delta)
 		with open(decrypted_file_path, "wb") as f:
 			f.write(Decrypted_data)

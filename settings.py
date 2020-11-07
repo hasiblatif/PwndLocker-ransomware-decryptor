@@ -4,7 +4,7 @@ table = "886A3F24D308A3852E8A191344737003223809A4D0319F2998FA2E08896C4EECE621284
 
 # In case of .key extension file encryption starts at offset 0 of encrypted file, whereas in .pwnd extension, it starts from 0x80. It could be some other value as well in variants, but in my tests
 # I observed these two values, so set accordingly
-start_of_encryption_offset = 0x80
+start_of_encryption_offset = 0x00
 
 # samples are using different keys, in case of .key encrypted file extension, this key is appended to encrypted file, whereas 
 # in .pwnd extension, it is hard-coded like this one. If it doesn't work, you have to extract key from executable with which the files
